@@ -31,8 +31,8 @@ contract Multisig {
     event QuorumUpdateSuccessful();
 
     constructor(uint _quorum, address[] memory _validSigners) {
-        require(_validSigners.length > 1, "few valid signers");
-        require(_quorum > 1, "quorum is too small");
+        // require(_validSigners.length > 1, "few valid signers");
+        // require(_quorum > 1, "quorum is too small");
 
 
         for(uint256 i = 0; i < _validSigners.length; i++) {
