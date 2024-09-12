@@ -5,12 +5,9 @@ import "./Multisig.sol";
 
 contract MultisigFactory {
 
-    Multisig[] multisigClones;
+    Multisig[] public multisigClones;
 
     function createMultisigWallet(uint256 _quorum, address[] memory _validSigners) external returns (Multisig newMulsig_, uint256 length_) {
-        require(_validSigners.length > 1, "few valid signers");
-        require(_quorum > 1, "quorum is too small");
-        
         newMulsig_ = new Multisig(_quorum, _validSigners);
 
         multisigClones.push(newMulsig_);
@@ -21,4 +18,4 @@ contract MultisigFactory {
     function getMultiSigClones() external view returns(Multisig[] memory) {
         return multisigClones;
     }
-}
+} //0xbce6dE8C0C9aA503bc529Bc4e8A84D03499a5729
