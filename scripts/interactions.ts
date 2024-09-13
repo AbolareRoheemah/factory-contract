@@ -11,13 +11,13 @@ async function main() {
 
     const createCloneTx = await multisigFactory.createMultiSigWallet(quorum, signers)
     await createCloneTx.wait()
-    // console.log(createCloneTx)
+    console.log(createCloneTx)
 
     const tokenAddress = "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9";
     const mytoken = await ethers.getContractAt("Reemarh", tokenAddress);
 
     const multiSigClones = await multisigFactory.getMultiSigClones();
-    // console.log("Created MultiSig wallets:", multiSigClones);
+    console.log("Created MultiSig wallets:", multiSigClones);
     const singleClone = multiSigClones[0];
     console.log("clonesArrayAfter",  singleClone);
 
@@ -38,14 +38,14 @@ async function main() {
     // initiate a transfer
     const trsfAmount =  ethers.parseUnits("10", 18);
     const transferCall = await multisigContract.connect(otherAcct1).transfer(trsfAmount, otherAccount, mytoken)
-    console.log("transferCall", transferCall.hash)
+    console.log("transferCall", transferCall)
     await transferCall.wait()
 
     const multiTxCount = await multisigContract.txCount();
     console.log({multiTxCount})
 
-    const approveCall = await multisigContract.connect(otherAcct2).approveTx(1)
-    console.log("approveCall", approveCall.hash)
+    const approveCall = await multisigContract.connect(otherAcct3).approveTx(1)
+    console.log("approveCall", approveCall)
     await approveCall.wait()
 
     // clonesArrayAfter
