@@ -1,21 +1,20 @@
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.9;
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.8.24;
 
-import "./Multisig.sol";
+import "./MultiSig.sol";
 
-contract MultisigFactory {
 
-    Multisig[] public multisigClones;
+contract MultiSigFactory{
+    MultiSig[] public multisigClones;
 
-    function createMultisigWallet(uint256 _quorum, address[] memory _validSigners) external returns (Multisig newMulsig_, uint256 length_) {
-        newMulsig_ = new Multisig(_quorum, _validSigners);
-
-        multisigClones.push(newMulsig_);
-
-        length_ = multisigClones.length;
+    function createMultiSigWallet(uint8 _quorum, address[] memory _signers) external returns(MultiSig _newMultiSig, uint256 _length){
+       _newMultiSig = new MultiSig(_quorum, _signers);
+       multisigClones.push(_newMultiSig);
+       _length=multisigClones.length;
     }
 
-    function getMultiSigClones() external view returns(Multisig[] memory) {
+    function getMultiSigClones() external view returns(MultiSig[] memory){
         return multisigClones;
     }
-} //0xbce6dE8C0C9aA503bc529Bc4e8A84D03499a5729
+
+} 

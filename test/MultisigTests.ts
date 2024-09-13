@@ -29,7 +29,7 @@ describe("Multisig", function () {
     const signers = [otherAcct1, otherAcct2, otherAcct3, otherAcct4, otherAcct5, otherAcct6]
     const { token } = await loadFixture(deployToken)
 
-    const Multisig = await hre.ethers.getContractFactory("Multisig");
+    const Multisig = await hre.ethers.getContractFactory("MultiSig");
     const multisig = await Multisig.deploy(2, signers)
 
     return { multisig, signers, owner, otherAccount, otherAcct1, token };

@@ -1,10 +1,10 @@
 import { buildModule } from "@nomicfoundation/hardhat-ignition/modules";
 
-const MultisigFactoryModule = buildModule("MultisigFactoryModule", (m) => {
+const MultiSigFactoryModule = buildModule("MultiSigFactoryModule", (m) => {
 
-  const factory = m.contract("MultisigFactory");
+  const factory = m.contract("MultiSigFactory");
 
   return { factory };
 });
 
-export default MultisigFactoryModule;
+export default MultiSigFactoryModule;

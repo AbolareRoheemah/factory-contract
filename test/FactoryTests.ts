@@ -21,27 +21,27 @@ describe("Multisig", function () {
         it("Should revert with right error if quorum is <= 1", async function () {
           const { factory, signers } = await loadFixture(deployMultisigFactoryFixture);
     
-          await expect(factory.createMultisigWallet(1, signers)).to.be.revertedWith("quorum is too small");
+          await expect(factory.createMultiSigWallet(1, signers)).to.be.revertedWith("quorum is too small");
         });
         it("Should revert with right error if valid signers is <= 1", async function () {
           const { factory, owner, signers, quorum } = await loadFixture(deployMultisigFactoryFixture);
     
-          await expect(factory.createMultisigWallet(quorum, [owner])).to.be.revertedWith("few valid signers");
+          await expect(factory.createMultiSigWallet(quorum, [owner])).to.be.revertedWith("few valid signers");
         });
         it("Should revert with right error if zero address in valid signers", async function () {
           const { factory, owner, signers, quorum, otherAccount, otherAcct1 } = await loadFixture(deployMultisigFactoryFixture);
     
-          await expect(factory.createMultisigWallet(quorum, [owner, ethers.ZeroAddress, otherAccount, otherAcct1 ])).to.be.revertedWith("zero address not allowed");
+          await expect(factory.createMultiSigWallet(quorum, [owner, ethers.ZeroAddress, otherAccount, otherAcct1 ])).to.be.revertedWith("zero address not allowed");
         });
         it("Should revert with right error if zero address in valid signers", async function () {
           const { factory, owner, signers, quorum, otherAccount, otherAcct1 } = await loadFixture(deployMultisigFactoryFixture);
     
-          await expect(factory.createMultisigWallet(quorum, [owner, otherAccount, otherAccount, otherAcct1 ])).to.be.revertedWith("signer already exist");
+          await expect(factory.createMultiSigWallet(quorum, [owner, otherAccount, otherAccount, otherAcct1 ])).to.be.revertedWith("signer already exist");
         });
         it("Should revert with right error if zero address in valid signers", async function () {
           const { factory, owner, signers, quorum, otherAccount, otherAcct1 } = await loadFixture(deployMultisigFactoryFixture);
     
-          await expect(factory.createMultisigWallet(5, [owner, otherAccount, otherAcct1 ])).to.be.revertedWith("quorum greater than valid signers");
+          await expect(factory.createMultiSigWallet(5, [owner, otherAccount, otherAcct1 ])).to.be.revertedWith("quorum greater than valid signers");
         });
       });
     describe("Cloning", function () {
@@ -49,7 +49,7 @@ describe("Multisig", function () {
         it("Should check that a clone is being created", async function () {
           const { factory, signers } = await loadFixture(deployMultisigFactoryFixture);
 
-          await factory.createMultisigWallet(quorum, signers);
+          await factory.createMultiSigWallet(quorum, signers);
     
           expect((await factory.getMultiSigClones()).length).to.equal(1);
         });

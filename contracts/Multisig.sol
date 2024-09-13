@@ -2,7 +2,7 @@
 pragma solidity ^0.8.24;
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
-contract Multisig {
+contract MultiSig {
     uint public quorum; // does this need to be public?
     uint public pendingQuorum; // does this need to be public?
     uint public noOfValidSigners;
